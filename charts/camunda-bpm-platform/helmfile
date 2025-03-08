@@ -1,0 +1,18 @@
+releases:
+  - name: camunda-bpm-platform
+    namespace: camunda-bpm-platform
+    chart: ./
+    values:
+      - envs/prod/values.yaml
+    set:
+      - name: image.repository
+        value: {{ requiredEnv "CAMUNDA_IMAGE_REPOSITORY" }}
+      - name: database.url
+        value: {{ requiredEnv "CAMUNDA_DB_URL" }}
+      - name: database.keys.username
+        value: {{ requiredEnv "CAMUNDA_DB_USERNAME" }}
+      - name: database.keys.password
+        value: {{ requiredEnv "CAMUNDA_DB_PASSWORD" }}
+      - name: service.loadBalancerIP
+        value: {{ requiredEnv "CAMUNDA_SERVICE_LOADBALANCER_IP" }}
+      
